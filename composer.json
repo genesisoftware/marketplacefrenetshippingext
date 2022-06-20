@@ -1,0 +1,18 @@
+{
+    "name": "genesisoft/marketplacefrenetshippingext",
+    "description": "Esse modulo extende o webkul/marketplace-base-frenet-shipping. Traduzindo as opções das paginas add.phtml e edit.phtml",
+    "type": "magento2-module",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "webkul/marketplace-base-frenet-shipping": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Genesisoft\\MarketplaceFrenetShippingExt\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+<?php
+$product_id = $this->getRequest()->getParam('id');
+$product = $block->getProduct($product_id);
+?>
+<legend class="legend">
+    <span><?php echo __('Product Dimensions') ?></span>
+</legend>
+<div class="field">
+    <label class="label"><?php echo __('Length(cm)') ?></label>
+    <div class="control">
+        <input type="text" data-bind="afterRender:ko.moneyPointMask" name="product[product_length]" class="input-text validate-zero-or-greater" value="<?php echo number_format((float)$product->getProductLength(),2,'.',''); ?>" />
+    </div>
+    <div class="admin__field-note">
+        <span><?php echo __('Length of product packaging (For freight calculation, minimum of 16cm') ?></span>
+    </div>
+</div>
+<div class="field">
+    <label class="label"><?php echo __('Width(cm)') ?></label>
+    <div class="control">
+        <input type="text" data-bind="afterRender:ko.moneyPointMask" name="product[product_width]" class="input-text validate-zero-or-greater" value="<?php echo number_format((float)$product->getProductWidth(),2,'.',''); ?>" />
+    </div>
+    <div class="admin__field-note">
+        <span><?php echo __('Width of product packaging (For freight calculation, minimum of 11cm') ?></span>
+    </div>
+</div>
+<div class="field">
+    <label class="label"><?php echo __('Height(cm)') ?></label>
+    <div class="control">
+        <input type="text" data-bind="afterRender:ko.moneyPointMask" name="product[product_height]" class="input-text validate-zero-or-greater" value="<?php echo number_format((float)$product->getProductHeight(),2,'.',''); ?>" />
+    </div>
+    <div class="admin__field-note">
+        <span><?php echo __('Height of product packaging (For freight calculation, minimum of 2cm') ?></span>
+    </div>
+</div>
+<div class="field">
+    <label class="label"><?php echo __(' Fragile Product') ?></label>
+    <div class="control">
+        <select name="product[fragile]" class="validate-select">
+            <option value="0"><?php echo __('No') ?></option>
+            <option value="1" <?php echo $product->getFragile()?'selected':'' ?>><?php echo __('Yes') ?></option>
+        </select>
+    </div>
+    <div class="admin__field-note">
+        <span><?php echo __('Does product contain glass or other fragile materials? (For freight calculation)') ?></span>
+    </div>
+</div>

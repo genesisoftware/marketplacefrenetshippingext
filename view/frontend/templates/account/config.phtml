@@ -1,0 +1,53 @@
+<?php 
+/**
+* Webkul Software.
+*
+* @category Webkul
+* @package Webkul_MarketplaceFrenetShipping
+* @author Webkul
+* @copyright Copyright (c) 2010-2018 Webkul Software Private Limited (https://webkul.com)
+* @license https://store.webkul.com/license.html
+*/
+
+?>
+<?php if($block->getConfigData('active') && $block->getConfigData('allow_seller')): ?>
+	<form class="form" action="<?php /* @escapeNotVerified */ echo $block->getUrl('mpfrenet/shipping/save', ['_secure' => $this->getRequest()->isSecure()]) ?>" method="post" id="form-validate" data-mage-init='{"validation":{}}' enctype="multipart/form-data" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" autocomplete="off">
+        <div class="wk-mp-page-title page-title">
+            <h2 class="legend"><?php /* @escapeNotVerified */ echo __('Marketplace Frenet Configuration') ?></h2>
+            <button type="submit" class="button wk-mp-btn action save primary">
+                <span><span><?php echo __('Save') ?></span></span>
+            </button>
+        </div>
+        <div style='background: #FFF; border: 1px solid #0091DB;'>
+            <div style='padding:10px;float: left;text-align: left; vertical-align:bottom;'>
+                <b>
+                <?php echo __("To configure the carriers for which you want to obtain freight quotes, obtain a user name and password, register shipping rules, access the <a href='https://painel.frenet.com.br' target='_blank'>administrative panel Frenet")?></a>.
+                </b><br/><br/>
+            </div>
+        </div>
+		<fieldset class="fieldset info">	
+			<?php echo $block->getBlockHtml('formkey')?>
+			<div class="field required">
+            	<label class="label"><span><?php echo __("User Name"); ?>:</span></label>
+                <div class="control">
+                    <?php if ($block->_getCustomerData()->getFrenetUsername()): ?>
+                        <input id="frenet_account_number" type="password" name="frenet_username" data-validate="{required:true}" value="******" />
+                    <?php else: ?>
+                    <input id="frenet_account_number" class="required-entry" type="password" name="frenet_username" data-validate="{required:true}" value="<?php echo $block->_getCustomerData()->getFrenetUsername(); ?>" />
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="field required">
+                <label class="label"><span><?php echo __("Password"); ?>:</span></label>
+                <div class="control">
+                    <?php if ($block->_getCustomerData()->getFrenetPassword()): ?>
+                    <input id="frenet_password" type="password" name="frenet_password" data-validate="{required:true}" value="******" />
+                    <?php else: ?>
+                    <input id="frenet_password" type="password" name="frenet_password" data-validate="{required:true}"/>
+                    <?php endif; ?>
+                    
+                </div>
+            </div>
+		</fieldset>
+	</form>
+<?php endif; ?>
